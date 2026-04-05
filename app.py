@@ -6,128 +6,147 @@ st.set_page_config(page_title="College Chatbot", page_icon="🎓")
 
 st.title("🎓 College Assistant Chatbot")
 
-# ------------------------------
-# Knowledge Base
-# ------------------------------
+# -------------------------
+# Knowledge Base (Q&A)
+# -------------------------
 
-knowledge_base = {
-    "greeting": {
-        "questions": ["hi","hello","hey","hii","good morning","good evening"],
-        "answer": "Hello 👋 Welcome to the college chatbot. How can I help you?"
-    },
+qa_pairs = {
+"What is the college name?":
+"Princeton Institute of Engineering and Technology for Women.",
 
-    "college_name": {
-        "questions": ["college name","name of college","what is your college"],
-        "answer": "Our college name is Princeton Institute of Engineering and Technology for Women."
-    },
+"Where is the college located?":
+"It is located in Chowdaryguda Village, Ghatkesar, Hyderabad, Telangana.",
 
-    "location": {
-        "questions": ["location","where is college","address","where located"],
-        "answer": "The college is located at Vijayapuri Colony, Ghatkesar, Hyderabad."
-    },
+"What are the college timings?":
+"College timings are from 9:30 AM to 3:30 PM.",
 
-    "timings": {
-        "questions": ["timings","college time","schedule","working hours"],
-        "answer": """College timings:
-9:30 AM – 3:30 PM
-Classes: 9:30 – 12:30
-Lunch: 12:30 – 1:15
-Labs: 1:15 – 3:30"""
-    },
+"How can I apply for admission?":
+"You can apply through the official website or through state counseling (EAMCET/ECET).",
 
-    "admission": {
-        "questions": ["admission","how to join","apply","entrance exam"],
-        "answer": "Admissions are based on entrance exams and counselling."
-    },
+"What is the admission process?":
+"Admissions are based on entrance exams like TS EAMCET (B.Tech), TS ECET (lateral entry), and GATE/PGECET (M.Tech).",
 
-    "courses": {
-        "questions": ["courses","branches","departments"],
-        "answer": "We offer B.Tech branches like CSE, CSD, CSM, ECE, and CIVIL."
-    },
+"What are the eligibility criteria?":
+"You must complete 10+2 with required marks and qualify in relevant entrance exams.",
 
-    "faculty": {
-        "questions": ["faculty","teachers","professors","staff"],
-        "answer": "Yes, our college has experienced and highly qualified faculty members."
-    },
+"When do admissions start and end?":
+"Admissions usually start after entrance exam results (around May–July).",
 
-    "labs": {
-        "questions": ["labs","computers","laboratories"],
-        "answer": "Yes, our college provides well-equipped labs with modern computer systems."
-    },
+"What branches are available in the college?":
+"CSE, ECE, EEE, Civil, Mechanical, and other engineering branches.",
 
-    "infrastructure": {
-        "questions": ["infrastructure","campus","buildings"],
-        "answer": "The campus has good infrastructure including smart classrooms, labs, library, and playground."
-    },
+"What courses are offered?":
+"Diploma, B.Tech, and M.Tech programs are offered.",
 
-    "placement": {
-        "questions": ["placement","companies","jobs"],
-        "answer": "Top companies visiting our campus include Infosys, Wipro, TCS, and Microsoft."
-    },
+"Does the college offer Computer Science or Data Science?":
+"Yes, Computer Science and related specializations are available.",
 
-    "package": {
-        "questions": ["package","salary","highest package"],
-        "answer": "The average package is around 4 LPA and the highest package is around 12 LPA."
-    },
+"What documents are required for admission?":
+"10th and 12th certificates, entrance exam rank card, Aadhaar card, photographs, and transfer certificate.",
 
-    "hostel": {
-        "questions": ["hostel","accommodation"],
-        "answer": "Hostel facilities are available for girls with good security and food facilities."
-    },
+"Is Aadhaar card mandatory for admission?":
+"Yes, it is generally required for verification.",
 
-    "transport": {
-        "questions": ["transport","bus","buses"],
-        "answer": "College buses are available in most areas of Hyderabad."
-    },
+"Do I need to submit previous academic certificates?":
+"Yes, submission of previous academic records is mandatory.",
 
-    "sports": {
-        "questions": ["sports","games","playground"],
-        "answer": "We have facilities for cricket, football, volleyball, and indoor games."
-    },
+"Is hostel facility available?":
+"Yes, hostel facilities are available for students.",
 
-    "ragging": {
-        "questions": ["ragging","anti ragging","safe campus"],
-        "answer": "Our college is a strict ragging-free campus with anti-ragging committees."
-    },
+"What are the hostel fees?":
+"Hostel fees vary, approximately ₹60,000–₹80,000 per year (may change).",
 
-    "library": {
-        "questions": ["library","books"],
-        "answer": "The college has a large library with academic books, journals, and digital resources."
-    }
+"Are separate hostels available for boys and girls?":
+"Yes, hostel facilities are available (primarily for women students).",
+
+"What is the fee structure for each branch?":
+"Approximate tuition fee is around ₹70,000 per year (varies by course).",
+
+"Are there any additional charges apart from tuition fees?":
+"Yes, exam fees, hostel fees, and transport fees may apply.",
+
+"Can the fees be paid in installments?":
+"Yes, installment options may be available depending on management policy.",
+
+"Is transport facility available?":
+"Yes, transport (bus facility) is available for students.",
+
+"What are the available bus routes?":
+"Multiple routes across Hyderabad and nearby areas are available.",
+
+"What is the transport fee?":
+"Transport fee depends on distance (approx ₹10,000–₹25,000 per year).",
+
+"Does the college provide placement opportunities?":
+"Yes, the college has a dedicated placement cell.",
+
+"Which companies visit the college for placements?":
+"Various IT and core companies visit (exact list varies each year).",
+
+"What is the placement percentage?":
+"Placement support is provided; percentage varies yearly.",
+
+"What is the average package offered?":
+"Average package is around ₹3–4 LPA (approximate).",
+
+"What is the highest package offered?":
+"Highest package can go up to ₹6–8 LPA (varies by year).",
+
+"Are scholarships available for students?":
+"Yes, scholarships are provided as per government rules.",
+
+"Who is eligible for scholarships?":
+"Students eligible under government schemes (merit, caste, income-based).",
+
+"How can I apply for a scholarship?":
+"Apply through state scholarship portals or college administration.",
+
+"What sports facilities are available in the college?":
+"Sports grounds, indoor games, and gym facilities are available.",
+
+"Are there any extracurricular activities?":
+"Yes, technical events, cultural programs, and clubs are conducted.",
+
+"What is the minimum attendance requirement?":
+"Minimum 75% attendance is required.",
+
+"What happens if attendance is below the required percentage?":
+"You may not be allowed to appear for exams.",
+
+"How are exams conducted in the college?":
+"Semester-based exams with internal and external assessments.",
+
+"What is the exam pattern?":
+"Includes internal exams, assignments, and final semester exams.",
+
+"Are there internal and external exams?":
+"Yes, both internal assessments and external university exams are conducted.",
+
+"What events are conducted in the college?":
+"Technical fests, seminars, workshops, and cultural events are organized.",
+
+"Are there technical fests or cultural programs held regularly?":
+"Yes, technical symposiums and cultural fests are conducted regularly."
 }
 
-# ------------------------------
+# -------------------------
 # Smart Matching Function
-# ------------------------------
+# -------------------------
 
 def get_bot_response(user_input):
 
-    user_input = user_input.lower()
+    questions = list(qa_pairs.keys())
 
-    for intent in knowledge_base:
-        for question in knowledge_base[intent]["questions"]:
-            if question in user_input:
-                return knowledge_base[intent]["answer"]
-
-    # Fuzzy backup matching
-    all_questions = []
-    intent_map = {}
-
-    for intent in knowledge_base:
-        for q in knowledge_base[intent]["questions"]:
-            all_questions.append(q)
-            intent_map[q] = intent
-
-    match = difflib.get_close_matches(user_input, all_questions, n=1, cutoff=0.5)
+    match = difflib.get_close_matches(user_input, questions, n=1, cutoff=0.4)
 
     if match:
-        return knowledge_base[intent_map[match[0]]]["answer"]
+        return qa_pairs[match[0]]
 
-    return "Sorry, I didn't understand that. Please ask something about the college."
+    return "Sorry, I couldn't understand the question. Please ask about admissions, fees, placements, hostel, or courses."
 
-# ------------------------------
+# -------------------------
 # Chat Memory
-# ------------------------------
+# -------------------------
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -136,9 +155,9 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# ------------------------------
+# -------------------------
 # Chat Input
-# ------------------------------
+# -------------------------
 
 user_prompt = st.chat_input("Ask something about the college...")
 
@@ -154,13 +173,13 @@ if user_prompt:
     with st.chat_message("assistant"):
 
         placeholder = st.empty()
-        typed = ""
+        text = ""
 
         for char in response:
-            typed += char
-            placeholder.markdown(typed + "▌")
-            time.sleep(0.02)
+            text += char
+            placeholder.markdown(text + "▌")
+            time.sleep(0.01)
 
-        placeholder.markdown(typed)
+        placeholder.markdown(text)
 
     st.session_state.messages.append({"role":"assistant","content":response})
